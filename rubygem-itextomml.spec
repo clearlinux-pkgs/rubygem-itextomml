@@ -4,12 +4,13 @@
 #
 Name     : rubygem-itextomml
 Version  : 1.5.2
-Release  : 4
+Release  : 5
 URL      : https://rubygems.org/downloads/itextomml-1.5.2.gem
 Source0  : https://rubygems.org/downloads/itextomml-1.5.2.gem
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0 MPL-2.0
+Requires: rubygem-itextomml-lib
 BuildRequires : ruby
 BuildRequires : rubygem-rdoc
 
@@ -18,6 +19,14 @@ INTRODUCTION:
 This package contains the Ruby bindings for itex2MML.
 It converts itex, a dialect of LaTeX, to MathML.
 A summary of the LaTeX syntax supported in itex can be found at
+
+%package lib
+Summary: lib components for the rubygem-itextomml package.
+Group: Libraries
+
+%description lib
+lib components for the rubygem-itextomml package.
+
 
 %prep
 gem unpack %{SOURCE0}
@@ -28,17 +37,17 @@ gem spec %{SOURCE0} -l --ruby > rubygem-itextomml.gemspec
 gem build rubygem-itextomml.gemspec
 
 %install
-gem_dir=$(ruby -e'puts Gem.default_dir')
+%global gem_dir $(ruby -e'puts Gem.default_dir')
 gem install -V \
 --local \
 --force \
---install-dir .${gem_dir} \
+--install-dir .%{gem_dir} \
 --bindir .%{_bindir} \
 itextomml-1.5.2.gem
 
-mkdir -p %{buildroot}${gem_dir}
-cp -pa .${gem_dir}/* \
-%{buildroot}${gem_dir}
+mkdir -p %{buildroot}%{gem_dir}
+cp -pa .%{gem_dir}/* \
+%{buildroot}%{gem_dir}
 
 if [ -d .%{_bindir} ]; then
 mkdir -p %{buildroot}%{_bindir}
@@ -46,59 +55,31 @@ cp -pa .%{_bindir}/* \
 %{buildroot}%{_bindir}/
 fi
 
+
 %files
 %defattr(-,root,root,-)
-/usr/lib64/ruby/gems/2.2.0/cache/itextomml-1.5.2.gem
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Error/cdesc-Error.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/as_bytes-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/as_utf8-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/block_filter-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/cdesc-Parser.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/filter-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/html_filter-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/inline_filter-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/parse-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/Parser/semaphore-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/cdesc-Itex2MML.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/itex2MML_filter-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/itex2MML_html_filter-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/Itex2MML/itex2MML_output-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/NullReferenceError/cdesc-NullReferenceError.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/ObjectPreviouslyDeleted/cdesc-ObjectPreviouslyDeleted.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/SWIG/Pointer/cdesc-Pointer.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/SWIG/cdesc-SWIG.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/as_bytes-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/as_utf8-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/cdesc-String.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/check_ncrs-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/is_utf8%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/num_chars-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/purify-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/to_ncr%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/to_ncr-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/to_utf8%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/String/to_utf8-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/cache.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/ext/page-Makefile.ri
-/usr/lib64/ruby/gems/2.2.0/doc/itextomml-1.5.2/ri/swig_runtime_data/cdesc-swig_runtime_data.ri
-/usr/lib64/ruby/gems/2.2.0/extensions/x86_64-linux/2.2.0/itextomml-1.5.2/gem.build_complete
-/usr/lib64/ruby/gems/2.2.0/extensions/x86_64-linux/2.2.0/itextomml-1.5.2/gem_make.out
-/usr/lib64/ruby/gems/2.2.0/extensions/x86_64-linux/2.2.0/itextomml-1.5.2/itex2MML.so
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/README
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/.RUBYARCHDIR.time
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/Makefile
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/extconf.rb
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/itex2MML.h
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/itex2MML.so
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/itex2MML_ruby.c
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/itex2MML_ruby.o
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/lex.yy.c
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/lex.yy.o
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/y.tab.c
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/y.tab.h
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/ext/y.tab.o
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/lib/itex2MML.so
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/lib/itex_stringsupport.rb
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/lib/itextomml.rb
-/usr/lib64/ruby/gems/2.2.0/gems/itextomml-1.5.2/test/test_itextomml.rb
-/usr/lib64/ruby/gems/2.2.0/specifications/itextomml-1.5.2.gemspec
+/usr/lib64/ruby/gems/2.3.0/cache/itextomml-1.5.2.gem
+/usr/lib64/ruby/gems/2.3.0/extensions/x86_64-linux/2.3.0/itextomml-1.5.2/gem.build_complete
+/usr/lib64/ruby/gems/2.3.0/extensions/x86_64-linux/2.3.0/itextomml-1.5.2/gem_make.out
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/README
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/.RUBYARCHDIR.time
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/Makefile
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/extconf.rb
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/itex2MML.h
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/itex2MML_ruby.c
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/itex2MML_ruby.o
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/lex.yy.c
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/lex.yy.o
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/y.tab.c
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/y.tab.h
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/y.tab.o
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/lib/itex_stringsupport.rb
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/lib/itextomml.rb
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/test/test_itextomml.rb
+/usr/lib64/ruby/gems/2.3.0/specifications/itextomml-1.5.2.gemspec
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/ruby/gems/2.3.0/extensions/x86_64-linux/2.3.0/itextomml-1.5.2/itex2MML.so
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/ext/itex2MML.so
+/usr/lib64/ruby/gems/2.3.0/gems/itextomml-1.5.2/lib/itex2MML.so
