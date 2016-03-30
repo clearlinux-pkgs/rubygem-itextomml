@@ -4,7 +4,7 @@
 #
 Name     : rubygem-itextomml
 Version  : 1.5.2
-Release  : 5
+Release  : 6
 URL      : https://rubygems.org/downloads/itextomml-1.5.2.gem
 Source0  : https://rubygems.org/downloads/itextomml-1.5.2.gem
 Summary  : No detailed summary available
